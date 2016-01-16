@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="" xmlns="http://www.w3.org/1999/xhtml"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>Train Controller</title>
+
+	<!--font awesome - icons!-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<!--uses pure.css for button styles, grid styles, form styles, etc. http://purecss.io -->
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+	<!---needed for phone layouts-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--my own custom CSS-->
+	<link rel="stylesheet" href="css/trains.css" />
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1>Train Controller</h1>
+		</div>
+	</header>
+	<div class="container"><!---center the page-->
+
+				<p>Bacon ipsum odlar sit amet swine flank, pastrami frankfurter capicola meatball kevin shank kielbasa flank biltong. Cow pancetta kielbasa ribeye, pig biltong tongue shank chuck boudin cupim sausage rump turducken.</p>
+				<p style="text-align:center;"><a class="pure-button pure-button-primary" href="#"><i class="fa fa-lightbulb-o"></i> Lights</a></p>
+
+						<h2>Webcam</h2>
+						<p><button class="pure-button pure-button-primary" onclick="startWebcam();"><i class="fa fa-camera-retro"></i> Roll Camera</button></p>
+						<video id="webcam" controls></video>
+
+					<div class="webcamalert"></div>
+					<div id="#ajaxy">
+						<h2>Ajax</h2>
+							<div class="ajaxAlert"></div>
+						<button class="pure-button pure-button-primary" onclick="sayHi();">Say Hi!</button>
+						<pre class="code">
+function sayHi() {
+  $.ajax({
+    type: "POST",      //send variables in the POST scope, not in GET scope.
+    url: "/ajax.php?", //call ajax.php.
+    data: {action: "sayHi"},//can be accessed in ajax.php like $_POST['action']
+    complete: function(returnData) {//HTTP response
+      //assume JSON!!!
+      var json = JSON.parse(returnData.response);
+      //put the message in a fancy little alert...
+      $(".ajaxAlert").prepend('&lt;p class="pure-alert primary"&gt;' + json.message + '&lt;/p&gt;');
+    }
+  });
+};
+</pre>
+					</div><!--/#ajaxy-->
+
+
+	</div><!--/.container-->
+
+
+	<!--
+		Uses Zepto - a lightweight substitute for jQuery.
+		Acts just like jQuery.
+		http://zeptojs.com/
+	-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>
+
+	<!--
+		My custom Javascript.
+	-->
+	<script src="js/trains.js"></script>
+
+</body>
+</html>
