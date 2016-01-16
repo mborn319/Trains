@@ -13,7 +13,7 @@ function sayHi() {
 			var json = JSON.parse(returnData.response);
 
 			//put the message in a fancy little alert...
-			$(".ajaxAlert").prepend('<p class="pure-alert primary">' + json.message + '</p>');
+			$(".ajaxAlert").prepend('<p class="pure-alert primary">The server says: ' + json.message + '</p>');
 		}
 	});
 };
