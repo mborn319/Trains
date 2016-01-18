@@ -35,31 +35,25 @@
 				<p style="text-align:center;"><a class="pure-button pure-button-primary" href="#"><i class="fa fa-lightbulb-o"></i> Lights</a></p>
 
 						<h2>Webcam</h2>
-						<p><button class="pure-button pure-button-primary" onclick="startWebcam();"><i class="fa fa-camera-retro"></i> Roll Camera</button></p>
+						<p><button class="pure-button pure-button-primary" id="webcamBtn"><i class="fa fa-camera-retro"></i> Roll Camera</button></p>
 						<video id="webcam" controls></video>
 
 					<div class="webcamalert"></div>
 					<div id="#ajaxy">
 						<h2>Ajax</h2>
-							<div class="ajaxAlert"></div>
-						<button class="pure-button pure-button-primary" onclick="sayHi();">Say Hi!</button>
-						<pre class="code">
-function sayHi() {
-  $.ajax({
-    type: "POST",      //send variables in the POST scope, not in GET scope.
-    url: "/ajax.php?", //call ajax.php.
-    data: {action: "sayHi"},//can be accessed in ajax.php like $_POST['action']
-    complete: function(returnData) {//HTTP response
-      //assume JSON!!!
-      var json = JSON.parse(returnData.response);
-      //put the message in a fancy little alert...
-      $(".ajaxAlert").prepend('&lt;p class="pure-alert primary"&gt;' + json.message + '&lt;/p&gt;');
-    }
-  });
-};
-</pre>
+						<div class="ajaxAlert"></div>
+						<button class="pure-button pure-button-primary" id="sayHiBtn">Say Hi!</button>
 					</div><!--/#ajaxy-->
+					<form id="slider" action="?" method="post" class="pure-form pure-form-stacked">
+						<h2>Sliders</h2>
+						<label for="speedSlider">Speed</label>
+						<input id="speedSlider" type="range" min="5" max="200" step="5" value="100" />
 
+						<label for="volumeSlider">Volume (?!?)</label>
+						<input id="volumeSlider" type="range" min="5" max="10" step="1" value="5" />
+
+						<div class="speedHere"></div>
+					</div>
 
 	</div><!--/.container-->
 
