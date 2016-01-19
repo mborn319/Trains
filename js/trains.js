@@ -1,9 +1,7 @@
 $(document).ready(function() {
 	//use this function to initiate anything that has to be done AFTER the page loads - like attach event handlers.
 
-	$("#webcamBtn").on("click",startWebcam);
 	$("#sayHiBtn").on("click",sayHi);
-
 
 	//start capturing slider value events and sending them to the PHP file.
 	setupSlider({
@@ -101,57 +99,4 @@ function sayHi() {
 			$(".ajaxAlert").prepend('<p class="pure-alert primary">The server says: ' + json.message + '</p>');
 		}
 	});
-};
-function startWebcam() {
-	/**
-	* startWebcam()
-	* \brief this function is used to setup the webcam.
-	* 		It asks for permission from the browser, initiates the video stream,
-	* 		sends the video stream to a <video> tag,
-	* 		and shows the <video> tag.
-	* 		Please note this function is called by the click event from the #webcamBtn.
-	* \param {none}
-	* \return {boolean} false - to prevent the <a> tag from following its URL.
-	*/
-	videoTag = ('#webcam');
-
-	var browserSupportsWebcamAPI = function() {
-		/**
-		* browserSupportsWebcamAPI()
-		* \brief This function does a test to see if navigator.mediaDevices exists.
-		* 		if the browser does NOT support it, this function puts an error alert in the .webcamalert div.
-		* \param {none}
-		* \returns {boolean} - true if webcam api is supported, false if not supported.
-		*/
-		if (typeof navigator.mediaDevices == "object") {
-			if (typeof navigator.mediaDevices.getUserMedia == "function") {
-				return true;
-			}
-		}
-		//show an error alert in the '<div class="webcamalert"></div>' element.
-		$(".webcamalert").prepend('<p class="pure-alert error">This browser doesn\'t support the Webcam API!</p>');
-		return false;
-	}
-
-	//returns false, OR the browser's impl. of the webcam API function.
-	if (browserSupportsWebcamAPI()) {
-
-
-		//Request webcam permissions. User has to click "Allow".
-		//this is JSON. If you wish to add audio, use "{video:true,audio:true}";
-		var p = navigator.mediaDevices.getUserMedia({ audio: false, video: true });
-
-		p.then(function(stream) {
-			videoTag.src = window.URL.createObjectURL(stream);
-			videoTag.onloadedmetadata = function(e) {
-				videoTag.style.display=block;//show the video just before we play the video
-				video.play();
-			};
-		});
-		p.catch(function(e) {
-			//permission denied error, most likely.
-			console.log(e.name);
-		}); // always check for errors at the end.
-	}
-	return false;
 };
