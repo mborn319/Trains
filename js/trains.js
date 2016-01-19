@@ -1,13 +1,33 @@
 $(document).ready(function() {
 	//use this function to initiate anything that has to be done AFTER the page loads - like attach event handlers.
 
-	document.getElementById("webcamBtn").addEventListener("click",startWebcam);
-	document.getElementById("sayHiBtn").addEventListener("click",sayHi);
+	$("#webcamBtn").on("click",startWebcam);
+	$("#sayHiBtn").on("click",sayHi);
 
-	setupSlider("speedSlider");
+
+	//start capturing slider value events and sending them to the PHP file.
+	setupSlider({
+		sliderid: "#speedSlider",
+		messageDiv: "#speedHere",
+		dataAction: "speed-control"
+	});
+
+	setupSlider({
+		sliderid: "#volumeSlider",
+		messageDiv: "#volumeHere",
+		dataAction: "volume-control"
+	});
 });
-function setupSlider(sliderid) {
-
+function setupSlider(options) {
+	/**
+	* setupSlider()
+	* \description
+	* 	the beauty of this super-function is that we can use it for a gazillion different sliders
+	* 	and send different data from each.
+	* 	The data is always sent as action,param, where action is static for the slider, and param is the value of the slider.
+	* \param {object} options - this is an object of options. Sliderid, messageDiv, and dataAction are all REQUIRED.
+	* \returns {object} slider element.
+	*/
 	var whenChanged = function(event) {
 		/**
 		* whenChanged()
@@ -16,19 +36,18 @@ function setupSlider(sliderid) {
 		* returns {object} returns the slider control object.
 		*/
 		var slider = event.target;
-		console.log("Value is changed!",slider.value);
 
 		var data = {
-			action: "speed-control",
-			speed: slider.value
+			action: options.dataAction,
+			param: slider.value
 		};
 		var whenDone = function(json) {
-			$(".speedHere").html('<p class="pure-alert primary">Speed is now: ' + json.message + 'mph</p>');
+			$(options.messageDiv).html('<p class="pure-alert primary">' + json.message + 'mph</p>');
 		};
 		//send the data. We don't really care what it says back,
 		//but we'll print it in a fancy alert message anyway.
 		sendToPHP("/ajax.php",data,whenDone);
-	}
+	};
 	var sendToPHP = function(url,datToSend,callback) {
 		/**
 		* sendToPHP()
@@ -54,7 +73,7 @@ function setupSlider(sliderid) {
 
 
 	//add the event listener to the slider control
-	 document.getElementById(sliderid).addEventListener("change",whenChanged)
+	$(options.sliderid).on("change",whenChanged)
 
 }
 function sayHi() {
@@ -94,7 +113,7 @@ function startWebcam() {
 	* \param {none}
 	* \return {boolean} false - to prevent the <a> tag from following its URL.
 	*/
-	videoTag = document.querySelector('#webcam');
+	videoTag = ('#webcam');
 
 	var browserSupportsWebcamAPI = function() {
 		/**

@@ -30,6 +30,23 @@
 }
 
 
+/* extending the form styles to add inline elements w/ inline alerts*/
+.pure-form-horiz label,
+.pure-form-horiz input,
+.pure-form-horiz select,
+.pure-form-horiz .alertThis {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 3px;
+}
+.pure-form-horiz label {
+	width: 140px;
+	text-align: right;
+}
+
+
+
+
 html, body {
 	font-family: sans-serif;
 	font-weight: 100;
@@ -72,4 +89,10 @@ header h1 {
 	width: 100%;
 	height: 360px;
 	display: none;
+}
+
+
+
+footer {
+	margin-top: 100px;
 }

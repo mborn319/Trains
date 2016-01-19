@@ -44,16 +44,23 @@
 						<div class="ajaxAlert"></div>
 						<button class="pure-button pure-button-primary" id="sayHiBtn">Say Hi!</button>
 					</div><!--/#ajaxy-->
-					<form id="slider" action="?" method="post" class="pure-form pure-form-stacked">
+					<form id="slider" action="?" method="post" class="pure-form pure-form-horiz">
 						<h2>Sliders</h2>
-						<label for="speedSlider">Speed</label>
-						<input id="speedSlider" type="range" min="5" max="200" step="5" value="100" />
+						<div class="block">
+							<label for="speedSlider">Speed</label>
+							<input id="speedSlider" type="range" min="5" max="200" step="5" value="100" />
+							<div class="alertThis" id="speedHere"></div>
+						</div>
+						<div class="block">
+							<label for="volumeSlider">Volume (?!?)</label>
+							<input id="volumeSlider" type="range" min="5" max="10" step="1" value="5" />
+							<div class="alertThis" id="volumeHere"></div>
+						</div>
 
-						<label for="volumeSlider">Volume (?!?)</label>
-						<input id="volumeSlider" type="range" min="5" max="10" step="1" value="5" />
-
-						<div class="speedHere"></div>
-					</div>
+					</form>
+		<footer>
+			<p>Copyright Michael Born, 2016. And Larry Spadaro too.</p>
+		</footer>
 
 	</div><!--/.container-->
 

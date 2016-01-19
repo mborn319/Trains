@@ -9,13 +9,23 @@ switch ($action) {
         echo '{"message":"Hi! Date/time is: '.date('m/d/Y h:i a').'"}';
     break;
     case "speed-control":
-        //get amount, direction, other data
-        if (isset($_POST["speed"])) { $speed = $_POST["speed"]; }
+        //get speed from a generic variable called "param", short for parameter.
+        if (isset($_POST["param"])) { $speed = $_POST["param"]; }
 
         //for security, it's best to validate as much as possible.
         //In this example, $speed should be validated as an integer.
 
         echo '{"message":"Speed is now: '.$speed.'"}';
+
+    break;
+    case "volume-control":
+        //get speed from a generic variable called "param", short for parameter.
+        if (isset($_POST["param"])) { $volume = $_POST["param"]; }
+
+        //for security, it's best to validate as much as possible.
+        //In this example, $speed should be validated as an integer.
+
+        echo '{"message":"Volume is now: '.$volume.'"}';
 
     break;
 }
