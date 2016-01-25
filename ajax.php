@@ -12,8 +12,20 @@ switch ($action) {
         //get speed from a generic variable called "param", short for parameter.
         if (isset($_POST["param"])) { $speed = $_POST["param"]; }
 
-        //for security, it's best to validate as much as possible.
-        //In this example, $speed should be validated as an integer.
+        switch($speed) {
+            case "2":
+                $speed = "FAST";//for return message
+                require ("driver/EngineFAST.php");
+            break;
+            case "1":
+                $speed = "SLOW";//for return message
+                require ("driver/EngineSLOW.php");
+            break;
+            case "0":
+                $speed = "OFF";//for return message
+                require ("driver/EngineOFF.php");
+            break;
+        }
 
         echo '{"message":"Speed is now: '.$speed.'"}';
 
