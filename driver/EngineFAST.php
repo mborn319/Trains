@@ -7,7 +7,10 @@ $serial = new phpSerial;
 //
 // First we must specify the device.
 // Comm settings assumed correct or use Mode to correct
-//
+// Note: This device will work on Windows by specifying "COM1".
+    //It will also work on Linux because if the class detects Linux,
+    //it replaces "COM" with "/dev/ttyS", and subtracts 1 from the integer,
+    // so it ends up opening /dev/ttyS0
 $serial->deviceSet("COM1");
 //
 // Then we need to open it
