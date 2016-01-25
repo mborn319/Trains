@@ -13,14 +13,15 @@ switch ($action) {
         if (isset($_POST["param"])) { $speed = $_POST["param"]; }
 
         switch($speed) {
-            case "2":
+            case "1":
                 $speed = "FAST";//for return message
                 require ("driver/EngineFAST.php");
             break;
-            case "1":
-                $speed = "SLOW";//for return message
-                require ("driver/EngineSLOW.php");
-            break;
+            //Update: decided to remove "SLOW" speed. We can add this with the driver stuff later.
+            //case "1":
+            //    $speed = "SLOW";//for return message
+            //    require ("driver/EngineSLOW.php");
+            //break;
             case "0":
                 $speed = "OFF";//for return message
                 require ("driver/EngineOFF.php");
